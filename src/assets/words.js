@@ -1,4 +1,4 @@
-[
+export const wordList = [
   {
     "id": "33198",
     "english": "Mother",

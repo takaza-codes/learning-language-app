@@ -1,0 +1,25 @@
+import React from "react";
+import wordList from "..//..//assets/words";
+import WordEntry from "./WordEntry";
+import styles from "WordList.module.css";
+
+const Table = () => {
+    return (
+        <table className={styles.wordList}>
+            <thead className={styles.topRow}>
+                <th className={styles.headerCell}>#</th>
+                <th className={styles.headerCell}>Word</th>
+                <th className={styles.headerCell}>Transcription</th>
+                <th className={styles.headerCell}>Translation</th>
+                <th className={styles.headerCell}>Tag</th>
+                <th className={styles.headerCell}>Action</th>
+            </thead>
+            <tbody>
+                {wordList.map((word) => 
+                <WordEntry key={word.id} word={word}/>)}
+            </tbody>
+        </table>
+    )
+}
+
+export default Table;
