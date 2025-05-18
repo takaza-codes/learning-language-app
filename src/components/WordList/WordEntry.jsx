@@ -25,9 +25,6 @@ function WordEntry({ word, index }) {
         console.log("Deleted word with id:", word.id);
     };
 
-    // const handleChange = (field, value) => {
-    //     setTempWord(prev => ({ ...prev, [field]: value }));
-    // };
   return (
     <tr className={styles.row}>
       <td className={styles.cell}>{index + 1}</td>
