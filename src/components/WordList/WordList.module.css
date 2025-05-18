@@ -1,3 +1,19 @@
 .wordList {
-  font-family: "Manrope";
+  border: 1px solid darkgray;
+  border-spacing: 0;
+}
+.wordList .topRow {
+  text-align: center;
+  background-color: rgb(228, 203, 195);
+}
+.wordList .topRow,
+.wordList .headerCell,
+.wordList .cell,
+.wordList .buttonContainer {
+  border: 1px solid darkgray;
+}
+.wordList .buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 }

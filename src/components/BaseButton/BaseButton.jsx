@@ -1,12 +1,32 @@
 import React from "react";
-import styles from "../BaseButton/BaseButton.css";
+import styles from "../BaseButton/BaseButton.module.css";
 
-const BaseButton = ({ onClick, children, type }) => {
+const BaseButton = ({ onClick, text, type }) => {
+
+    let className;
+
+  switch (type) {
+    case "edit":
+      className = styles.edit;
+      break;
+    case "delete":
+      className = styles.delete;
+      break;
+    case "save":
+      className = styles.save;
+      break;
+    case "cancel":
+      className = styles.cancel;
+      break;
+    default:
+      className = styles.default; 
+  }
+
     return (
-        <button className={styles.baseButton} onClick={onClick} type={type}>
-            {children}
-        </button>
-    );
+    <button className={className} onClick={onClick}>
+      {text}
+    </button>
+  );
 };
 
 export default BaseButton;

@@ -1,5 +1,24 @@
 @import "../../styles/variables";
 
 .wordList {
-  font-family: $base-font-family;
+  border: 1px solid darkgray;
+  border-spacing: 0;
+
+  .topRow {
+    text-align: center;
+    background-color: rgb(228, 203, 195);
+  }
+
+  .topRow,
+  .headerCell,
+  .cell,
+  .buttonContainer {
+    border: 1px solid darkgray;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 }

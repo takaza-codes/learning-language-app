@@ -8,23 +8,21 @@ function WordEntry({ word, index }) {
 
     const handleEditClick = () => {
         setIsEditing(true);
-        setTempWord({ ...word }); // Initialize temp state
+        setTempWord({ ...word });
     };
 
     const handleCancelClick = () => {
         setIsEditing(false);
-        setTempWord({ ...word }); // Revert to original
+        setTempWord({ ...word });
     };
 
     const handleSaveClick = () => {
-        // In a real app you'd also call a save function or update parent state
         console.log("Saved:", tempWord);
         setIsEditing(false);
     };
 
     const handleDeleteClick = () => {
         console.log("Deleted word with id:", word.id);
-        // You could call a delete function passed in via props here
     };
 
     // const handleChange = (field, value) => {
@@ -39,13 +37,13 @@ function WordEntry({ word, index }) {
       <td className={styles.buttonContainer}>
                 {!isEditing ? (
                     <>
-                        <BaseButton onClick={handleEditClick}>Edit</BaseButton>
-                        <BaseButton onClick={handleDeleteClick}>Delete</BaseButton>
+                        <BaseButton onClick={handleEditClick} type="edit" text="Edit"/>
+                        <BaseButton onClick={handleDeleteClick} type="delete" text="Delete"/>
                     </>
                 ) : (
                     <>
-                        <BaseButton onClick={handleSaveClick}>Save</BaseButton>
-                        <BaseButton onClick={handleCancelClick}>Cancel</BaseButton>
+                        <BaseButton onClick={handleSaveClick} type="save" text="Save"/>
+                        <BaseButton onClick={handleCancelClick} type="cancel" text="Cancel"/>
                     </>
                 )}
             </td>
