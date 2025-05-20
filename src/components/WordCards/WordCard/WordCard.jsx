@@ -11,9 +11,13 @@ function WordCard({ props }) {
       <h3 className={styles.testWord}>{english}</h3>
       <p className={styles.transcription}>{transcription}</p>
       {!isRevealed ? (
-        <CardButton onClick={() => setIsRevealed(true)} text="Проверить" />
+        <CardButton onClick={() => setIsRevealed(true)} text="Check" />
       ) : (
-        <div className={styles.translation}>{russian}</div>
+        <div
+          className={styles.translation}
+          onClick={() => setIsRevealed(false)}>
+          {russian}
+        </div>
       )}
     </article>
   );
