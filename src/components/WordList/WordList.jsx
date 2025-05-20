@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { wordList } from "../../assets/words";
 import WordEntry from "./WordEntry";
 import styles from "./WordList.module.scss";
 
 const Table = () => {
+  const [words, setWords] = useState(wordList);
+
+  const handleSaveWord = (updatedWord) => {
+    setWords((prevWords) =>
+      prevWords.map((word) => (word.id === updatedWord.id ? updatedWord : word))
+    );
+  };
+
   return (
     <table className={styles.wordList}>
       <thead className={styles.topRow}>
@@ -16,8 +24,13 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {wordList.map((word, index) => (
-          <WordEntry key={word.id} word={word} index={index} />
+        {words.map((word, index) => (
+          <WordEntry
+            key={word.id}
+            word={word}
+            index={index}
+            onSave={handleSaveWord}
+          />
         ))}
       </tbody>
     </table>
