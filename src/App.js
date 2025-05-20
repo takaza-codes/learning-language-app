@@ -1,6 +1,6 @@
-import "./App.css";
-import MainPage from "./components/MainPage/MainPage";
-import "./styles/fonts.css";
+import "./App.scss";
+import MainPage from "./components/Pages/MainPage/MainPage";
+import "./styles/fonts.scss";
 
 function App() {
   return (
