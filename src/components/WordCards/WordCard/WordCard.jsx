@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import styles from "./WordCard.module.scss";
+import React, { useState, useEffect } from "react";
+import styles from "../WordCards.module.scss";
 import CardButton from "../CardButton/CardButton";
 
 function WordCard({ props }) {
-  const { english, transcription, russian } = props;
+  const { english, transcription, russian, id } = props;
   const [isRevealed, setIsRevealed] = useState(false);
+
+  useEffect(() => {
+    setIsRevealed(false);
+  }, [id]);
 
   return (
     <article className={styles.card}>

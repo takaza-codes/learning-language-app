@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./WordList.module.scss";
 import BaseButton from "../BaseButton/BaseButton";
+import { Edit3, Trash2, X, Save } from "lucide-react";
 
 function WordEntry({ word, index, onSave }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -72,21 +73,21 @@ function WordEntry({ word, index, onSave }) {
       <td className={styles.buttonContainer}>
         {!isEditing ? (
           <>
-            <BaseButton onClick={handleEditClick} type="edit" text="Edit" />
-            <BaseButton
-              onClick={handleDeleteClick}
-              type="delete"
-              text="Delete"
-            />
+            <BaseButton onClick={handleEditClick} type="edit">
+              <Edit3 size={16} />
+            </BaseButton>
+            <BaseButton onClick={handleDeleteClick} type="delete">
+              <Trash2 size={16} />
+            </BaseButton>
           </>
         ) : (
           <>
-            <BaseButton onClick={handleSaveClick} type="save" text="Save" />
-            <BaseButton
-              onClick={handleCancelClick}
-              type="cancel"
-              text="Cancel"
-            />
+            <BaseButton onClick={handleSaveClick} type="save">
+              <Save size={16} />
+            </BaseButton>
+            <BaseButton onClick={handleCancelClick} type="cancel">
+              <X size={16} />
+            </BaseButton>
           </>
         )}
       </td>

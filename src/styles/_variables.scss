@@ -19,7 +19,11 @@ $card-background: rgba(250, 250, 250, 0.912);
   cursor: pointer;
 
   &:hover {
-    filter: brightness(85%);
+    filter: brightness(90%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -33,6 +37,6 @@ $card-background: rgba(250, 250, 250, 0.912);
   }
 
   &:hover {
-    filter: brightness(85%);
+    filter: brightness(90%);
   }
 }

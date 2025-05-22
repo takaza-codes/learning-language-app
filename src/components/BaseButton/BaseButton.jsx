@@ -1,9 +1,8 @@
 import React from "react";
-import styles from "../BaseButton/BaseButton.module.css";
+import styles from "../BaseButton/BaseButton.module.scss";
 
-const BaseButton = ({ onClick, text, type }) => {
-
-    let className;
+const BaseButton = ({ onClick, type, children }) => {
+  let className;
 
   switch (type) {
     case "edit":
@@ -19,12 +18,12 @@ const BaseButton = ({ onClick, text, type }) => {
       className = styles.cancel;
       break;
     default:
-      className = styles.default; 
+      className = styles.default;
   }
 
-    return (
+  return (
     <button className={className} onClick={onClick}>
-      {text}
+      {children}
     </button>
   );
 };

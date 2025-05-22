@@ -3,25 +3,28 @@
 button {
   @include button;
   margin: 5px;
-  padding: 3px 10px;
+  padding: 10px 15px;
   border-radius: 6px;
-  border: 1px solid rgb(104, 104, 104);
+  border: 1px solid rgb(180, 180, 180);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .edit {
-  background-color: rgba(251, 201, 107, 0.681);
+  background-color: $yellow;
 }
 
 .delete {
-  background-color: rgba(250, 5, 5, 0.594);
+  background-color: $red;
 }
 
 .cancel {
-  background-color: rgb(203, 196, 196);
+  background-color: darken($card-background, 10%);
 }
 
 .save {
-  background-color: rgba(119, 213, 119, 0.747);
+  background-color: $green;
 }
 
 .default {
