@@ -1,55 +1,64 @@
 @import "../../styles/variables";
 
-.cardsContainer {
-  margin-top: 4rem;
-  align-self: center;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  gap: 2rem;
-
-  .clickButton {
-    padding: 5px;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $card-background;
-    border: 2px solid $pink;
-  }
-
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-}
-
-.finalCard {
-  min-width: 250px;
-  min-height: 350px;
+.slider {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  border: 2px solid $red;
-  background-color: $card-background;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
 
-  // &:hover {
-  //   background-color: lighten($card-background, 10%);
-  //   border: 2px solid $light-blue;
-  // }
+  .cardsContainer {
+    margin-top: 4rem;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 
-  h3 {
-    font-size: 1.4rem;
+    .clickButton {
+      padding: 5px;
+      height: 3rem;
+      width: 3rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $card-background;
+      border: 2px solid $pink;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   }
 
-  p {
-    text-align: center;
+  .finalCard {
+    min-width: 250px;
+    min-height: 350px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    border: 2px solid $red;
+    background-color: $card-background;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+    // &:hover {
+    //   background-color: lighten($card-background, 10%);
+    //   border: 2px solid $light-blue;
+    // }
+
+    h3 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+
+  .progressBar {
+    display: block;
   }
 }
