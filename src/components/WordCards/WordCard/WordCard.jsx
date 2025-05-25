@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../WordCards.module.scss";
+import styles from "./WordCard.module.scss";
 import CardButton from "../CardButton/CardButton";
 
 function WordCard({ props }) {

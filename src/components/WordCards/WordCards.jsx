@@ -45,7 +45,7 @@ function WordCards() {
             {currentWord ? (
               <WordCard props={currentWord} />
             ) : (
-              <div className={styles.card}>
+              <div className={styles.finalCard}>
                 <h3>🎉 Look at that!</h3>
                 <p>
                   There are no more cards. <br />

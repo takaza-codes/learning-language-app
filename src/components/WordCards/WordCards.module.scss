@@ -27,7 +27,7 @@
   }
 }
 
-.card {
+.finalCard {
   min-width: 250px;
   min-height: 350px;
   display: flex;
@@ -35,24 +35,18 @@
   align-items: center;
   justify-content: center;
   border-radius: 16px;
-  border: 2px solid rgb(207, 207, 207);
+  border: 2px solid $red;
   background-color: $card-background;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 
-  &:hover {
-    background-color: lighten($card-background, 10%);
-    border: 2px solid $light-blue;
-  }
+  // &:hover {
+  //   background-color: lighten($card-background, 10%);
+  //   border: 2px solid $light-blue;
+  // }
 
   h3 {
     font-size: 1.4rem;
-  }
-
-  .translation {
-    color: #2cbf8b;
-    font-size: 1.6rem;
-    font-weight: 600;
   }
 
   p {
