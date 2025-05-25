@@ -8,19 +8,19 @@ function WordEntry({ word, index, onSave }) {
   const [tempWord, setTempWord] = useState({ ...word });
 
   const handleEditClick = () => {
-    setIsEditing(true);
+    setIsEditing((prev) => !prev);
     setTempWord({ ...word });
   };
 
   const handleCancelClick = () => {
-    setIsEditing(false);
+    setIsEditing((prev) => !prev);
     setTempWord({ ...word });
   };
 
   const handleSaveClick = () => {
     // console.log("Saved:", tempWord);
     onSave(tempWord);
-    setIsEditing(false);
+    setIsEditing((prev) => !prev);
   };
 
   const handleDeleteClick = () => {
@@ -39,6 +39,7 @@ function WordEntry({ word, index, onSave }) {
           <input
             type="text"
             value={tempWord.english}
+            name={"english"}
             onChange={(e) => handleChange("english", e.target.value)}
             className={styles.input}
           />
@@ -51,6 +52,7 @@ function WordEntry({ word, index, onSave }) {
           <input
             type="text"
             value={tempWord.transcription}
+            name={"transcription"}
             onChange={(e) => handleChange("transcription", e.target.value)}
             className={styles.input}
           />
@@ -63,6 +65,7 @@ function WordEntry({ word, index, onSave }) {
           <input
             type="text"
             value={tempWord.russian}
+            name={"translation"}
             onChange={(e) => handleChange("russian", e.target.value)}
             className={styles.input}
           />
