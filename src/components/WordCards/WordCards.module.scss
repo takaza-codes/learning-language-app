@@ -4,6 +4,7 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  row-gap: 1rem;
 
   .cardsContainer {
     margin-top: 4rem;
@@ -56,9 +57,5 @@
     p {
       text-align: center;
     }
-  }
-
-  .progressBar {
-    display: block;
   }
 }
