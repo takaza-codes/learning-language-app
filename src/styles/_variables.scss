@@ -29,6 +29,7 @@ $card-background: rgba(250, 250, 250, 0.912);
 
 //Base link
 @mixin link {
+  text-decoration: none;
   color: inherit;
   cursor: pointer;
 

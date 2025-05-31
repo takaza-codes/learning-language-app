@@ -4,7 +4,6 @@ import WordCard from "./WordCard/WordCard";
 import styles from "./WordCards.module.scss";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { div } from "framer-motion/client";
 
 function WordCards() {
   const [cardIndex, setCardIndex] = useState(0);
