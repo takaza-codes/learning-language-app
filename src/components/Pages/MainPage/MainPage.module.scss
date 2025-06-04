@@ -1,0 +1,25 @@
+@import "../../../styles/variables";
+
+.bannerContainer {
+  display: flex;
+  align-items: center;
+
+  .imageContainer {
+    max-height: 500px;
+
+    img {
+      max-height: 500px;
+    }
+  }
+
+  div {
+    h1 {
+      margin: 0;
+      font-size: 4.5rem;
+      font-weight: 600;
+      span {
+        color: $green;
+      }
+    }
+  }
+}
