@@ -6,7 +6,7 @@ import styles from "./ErrorPage.module.scss";
 function ErrorPage() {
   const navigate = useNavigate();
 
-  function GoBackButton() {
+  function handleGoBack() {
     navigate(-1);
   }
 
@@ -17,7 +17,7 @@ function ErrorPage() {
         <img src={errorImage} alt="Oops!" />
       </div>
       <h2>...but it's definitely not here!</h2>
-      <BaseButton className={styles.goBackButton} onClick={GoBackButton}>
+      <BaseButton className={styles.goBackButton} onClick={handleGoBack}>
         Go back
       </BaseButton>
     </div>

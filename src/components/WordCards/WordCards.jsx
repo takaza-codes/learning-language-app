@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { wordList } from "../../assets/words";
 import WordCard from "./WordCard/WordCard";
+import CardButton from "./CardButton/CardButton";
 import styles from "./WordCards.module.scss";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -52,6 +53,7 @@ function WordCards() {
                     There are no more cards. <br />
                     Well done!
                   </p>
+                  <CardButton text="Again?" />
                 </div>
               )}
             </motion.div>

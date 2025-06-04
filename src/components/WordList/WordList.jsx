@@ -3,7 +3,7 @@ import { wordList } from "../../assets/words";
 import WordEntry from "./WordEntry";
 import styles from "./WordList.module.scss";
 
-const Table = () => {
+const WordList = () => {
   const [words, setWords] = useState(wordList);
 
   const handleSaveWord = (updatedWord) => {
@@ -37,4 +37,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default WordList;
