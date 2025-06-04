@@ -1,0 +1,20 @@
+@import "../../../styles/variables";
+
+.errorWrapper {
+  padding: 3rem 0;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  h2 {
+    margin: 2rem 0;
+  }
+
+  .errorImage {
+    max-height: 300px;
+
+    img {
+      max-height: 300px;
+    }
+  }
+}

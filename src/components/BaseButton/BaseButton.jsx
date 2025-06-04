@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../BaseButton/BaseButton.module.scss";
 
 const BaseButton = ({ onClick, type, children }) => {
