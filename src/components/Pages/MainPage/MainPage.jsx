@@ -26,17 +26,25 @@ function MainPage() {
           <div className={styles.step}>
             <img src={joinIcon} alt="Create an account icon" />
             <h3>Create an account</h3>
-            <p>Less than 5 minutes - and you're ready to go</p>
+            <p>
+              Less than 5 minutes - <br />
+              and you're ready to go
+            </p>
           </div>
           <div className={styles.step}>
             <img src={timeIcon} alt="Invest time icon" />
             <h3>Invest time every day</h3>
-            <p>As little or as much as you want - regularity is key</p>
+            <p>
+              As little or as much as you want - <br />
+              regularity is key
+            </p>
           </div>
           <div className={styles.step}>
             <img src={resultIcon} alt="Get results icon" />
             <h3>Get results</h3>
-            <p>Notice your progress and it'll keep you motivated</p>
+            <p>
+              Notice your progress - <br /> it'll keep you motivated
+            </p>
           </div>
         </div>
       </section>
