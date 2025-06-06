@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+
+.footer {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../assets/images/header-image.svg);
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.4);
+  background-blend-mode: overlay;
+
+  div {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
