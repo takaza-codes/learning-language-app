@@ -76,19 +76,19 @@ function WordEntry({ word, index, onSave }) {
       <td className={styles.buttonContainer}>
         {!isEditing ? (
           <>
-            <BaseButton onClick={handleEditClick} type="edit">
+            <BaseButton onClick={handleEditClick} form="edit">
               <Edit3 size={16} />
             </BaseButton>
-            <BaseButton onClick={handleDeleteClick} type="delete">
+            <BaseButton onClick={handleDeleteClick} form="delete">
               <Trash2 size={16} />
             </BaseButton>
           </>
         ) : (
           <>
-            <BaseButton onClick={handleSaveClick} type="save">
+            <BaseButton onClick={handleSaveClick} form="save">
               <Save size={16} />
             </BaseButton>
-            <BaseButton onClick={handleCancelClick} type="cancel">
+            <BaseButton onClick={handleCancelClick} form="cancel">
               <X size={16} />
             </BaseButton>
           </>

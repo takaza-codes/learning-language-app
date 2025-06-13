@@ -1,9 +1,9 @@
 import styles from "../BaseButton/BaseButton.module.scss";
 
-const BaseButton = ({ onClick, type, children }) => {
+const BaseButton = ({ onClick, type, form, children }) => {
   let className;
 
-  switch (type) {
+  switch (form) {
     case "edit":
       className = styles.edit;
       break;
@@ -21,7 +21,7 @@ const BaseButton = ({ onClick, type, children }) => {
   }
 
   return (
-    <button className={className} onClick={onClick}>
+    <button className={className} onClick={onClick} type={type}>
       {children}
     </button>
   );
