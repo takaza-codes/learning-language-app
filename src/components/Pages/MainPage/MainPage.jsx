@@ -5,6 +5,7 @@ import joinIcon from "../../../assets/icons/join-icon.svg";
 import timeIcon from "../../../assets/icons/time-icon.svg";
 import resultIcon from "../../../assets/icons/result-icon.svg";
 import InfoCard from "../../InfoCard/InfoCard";
+import SignupForm from "../../SignupForm/SignupForm";
 
 const steps = [
   {
@@ -56,7 +57,9 @@ function MainPage() {
           ))}
         </div>
       </section>
-      <section></section>
+      <section>
+        <SignupForm />
+      </section>
     </>
   );
 }
