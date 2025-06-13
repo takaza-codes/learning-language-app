@@ -6,6 +6,8 @@ import timeIcon from "../../../assets/icons/time-icon.svg";
 import resultIcon from "../../../assets/icons/result-icon.svg";
 import InfoCard from "../../InfoCard/InfoCard";
 import SignupForm from "../../SignupForm/SignupForm";
+import ROUTES from "../../../routes/routes";
+import { Link } from "react-router-dom";
 
 const steps = [
   {
@@ -37,7 +39,9 @@ function MainPage() {
             Investing in <br />
             Knowledge and <br /> <span>Your Future</span>
           </h1>
-          <BaseButton type="save">Get started!</BaseButton>
+          <BaseButton form="save">
+            <Link to={ROUTES.LIST}>Get started!</Link>
+          </BaseButton>
         </div>
         <div className={styles.imageContainer}>
           <img src={banner} alt="Banner" />

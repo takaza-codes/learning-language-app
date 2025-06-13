@@ -75,7 +75,9 @@ const SignupForm = () => {
           <MyCheckbox name="acceptedTerms">
             I accept the terms and conditions
           </MyCheckbox>
-          <BaseButton type="save">Submit</BaseButton>
+          <BaseButton form="save" type="submit">
+            Submit
+          </BaseButton>
         </Form>
       </Formik>
     </div>
