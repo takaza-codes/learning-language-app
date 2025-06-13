@@ -45,21 +45,5 @@
   .steps {
     display: flex;
     gap: 3rem;
-
-    .step {
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-      width: 250px;
-      padding: 20px 20px;
-      border: 2px solid black;
-      border-radius: 16px;
-      background-color: lighten($card-background, 30%);
-      box-shadow: 10px 10px 13px $shadow-color;
-
-      p {
-        text-align: center;
-      }
-    }
   }
 }

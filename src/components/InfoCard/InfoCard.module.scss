@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.step {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 250px;
+  padding: 20px 20px;
+  border: 2px solid black;
+  border-radius: 16px;
+  background-color: lighten($card-background, 30%);
+  box-shadow: 10px 10px 13px $shadow-color;
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    text-align: center;
+  }
+}

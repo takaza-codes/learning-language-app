@@ -1,5 +1,7 @@
+@import "../../../styles/variables";
+
 .button {
-  background-color: #2cbf8b;
+  background-color: $green;
   padding: 10px 15px;
   color: white;
   border: none;
@@ -8,5 +10,11 @@
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline-color: $pink;
+    outline-style: solid;
+    outline-width: 1.5px;
   }
 }

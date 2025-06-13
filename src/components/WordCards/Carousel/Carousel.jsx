@@ -1,5 +1,6 @@
+import { useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import styles from "./WordCards.module.scss";
+import styles from "./Carousel.module.scss";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 function Carousel({
@@ -30,13 +31,32 @@ function Carousel({
     }
   };
 
+  const goBackRef = useRef(null);
+  const goForwardRef = useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft") {
+        goBackRef.current && goBackRef.current.focus();
+        goBack();
+      }
+      if (e.key === "ArrowRight") {
+        goForwardRef.current && goForwardRef.current.focus();
+        goForward();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  });
+
   return (
     <div className={styles.slider}>
       <div className={styles.cardsContainer}>
         <button
           onClick={goBack}
           disabled={cardIndex === 0}
-          className={styles.clickButton}>
+          className={styles.clickButton}
+          ref={goBackRef}>
           <ArrowLeft />
         </button>
 
@@ -57,7 +77,8 @@ function Carousel({
         <button
           onClick={goForward}
           disabled={isLastCard}
-          className={styles.clickButton}>
+          className={styles.clickButton}
+          ref={goForwardRef}>
           <ArrowRight />
         </button>
       </div>

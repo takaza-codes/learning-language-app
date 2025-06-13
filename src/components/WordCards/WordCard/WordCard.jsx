@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./WordCard.module.scss";
 import CardButton from "../CardButton/CardButton";
 
-function WordCard({ props }) {
+function WordCard({ props, onFirstReveal }) {
   const { english, transcription, russian, id } = props;
   const [isRevealed, setIsRevealed] = useState(false);
 
@@ -10,12 +10,19 @@ function WordCard({ props }) {
     setIsRevealed(false);
   }, [id]);
 
+  const handleCheckClick = () => {
+    if (!isRevealed) {
+      onFirstReveal(id);
+      setIsRevealed(true);
+    }
+  };
+
   return (
     <article className={styles.card}>
       <h3 className={styles.testWord}>{english}</h3>
       <p className={styles.transcription}>{transcription}</p>
       {!isRevealed ? (
-        <CardButton onClick={() => setIsRevealed(true)} text="Check" />
+        <CardButton onClick={handleCheckClick} text="Check" />
       ) : (
         <div
           className={styles.translation}

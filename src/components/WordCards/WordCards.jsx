@@ -2,7 +2,7 @@ import { useState } from "react";
 import { wordList } from "../../assets/words";
 import WordCard from "./WordCard/WordCard";
 import CardButton from "./CardButton/CardButton";
-import Carousel from "./Carousel";
+import Carousel from "./Carousel/Carousel";
 import styles from "./WordCards.module.scss";
 
 function WordCards() {
@@ -25,17 +25,36 @@ function WordCards() {
     </div>
   );
 
+  const [wordsLearned, setWordsLearned] = useState(0);
+  const [revealedIds, setRevealedIds] = useState([]);
+
+  const handleFirstReveal = (id) => {
+    if (!revealedIds.includes(id)) {
+      setWordsLearned((prev) => prev + 1);
+      setRevealedIds([...revealedIds, id]);
+    }
+  };
+
   return (
-    <Carousel
-      items={wordList}
-      cardIndex={cardIndex}
-      setCardIndex={setCardIndex}
-      direction={direction}
-      setDirection={setDirection}
-      renderItem={(word) => <WordCard props={word} />}
-      finalSlide={finalSlide}
-      showProgress
-    />
+    <div className={styles.mainContainer}>
+      <div className={styles.wordsLearned}>
+        <p>this session: </p>
+        <p className={styles.counter}>{wordsLearned} </p>
+        <p>words learned</p>
+      </div>
+      <Carousel
+        items={wordList}
+        cardIndex={cardIndex}
+        setCardIndex={setCardIndex}
+        direction={direction}
+        setDirection={setDirection}
+        renderItem={(word) => (
+          <WordCard props={word} onFirstReveal={handleFirstReveal} />
+        )}
+        finalSlide={finalSlide}
+        showProgress
+      />
+    </div>
   );
 }
 
