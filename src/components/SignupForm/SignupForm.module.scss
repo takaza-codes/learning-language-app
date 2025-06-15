@@ -1,0 +1,59 @@
+@import "../../styles/variables";
+
+.formContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  h2 {
+    font-size: 3rem;
+    text-shadow: 5px 5px 10px $shadow-color;
+  }
+
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: start;
+    gap: 0.4rem;
+
+    input[type="email"],
+    input[type="text"],
+    textarea {
+      margin: 0.4rem 0;
+      padding: 6px;
+      font-family: "Manrope";
+      font-size: 1.3rem;
+      border-radius: 8px;
+      border: 2px solid $light-blue;
+      width: 400px;
+
+      &:active {
+        border: 2px solid $blue;
+      }
+      //снять стили браузера
+
+      &:hover {
+        border: 2px solid $light-pink;
+      }
+    }
+
+    .termsCheckbox {
+      font-size: 1.1rem;
+    }
+
+    input[type="checkbox"] {
+      margin: 0.5rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      align-self: center;
+    }
+
+    .errorMsg {
+      padding-left: 1.5rem;
+      color: $red;
+      font-weight: 500;
+    }
+  }
+}
