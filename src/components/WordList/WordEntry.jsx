@@ -28,7 +28,6 @@ function WordEntry({ word, index, onSave }) {
 
   const handleSaveClick = () => {
     if (Object.values(errors).some((e) => e)) {
-      console.warn("Cannot save: there are validation errors.");
       return;
     }
     onSave(tempWord);
@@ -60,7 +59,7 @@ function WordEntry({ word, index, onSave }) {
   const handleChange = (field, value) => {
     setTempWord((prev) => ({ ...prev, [field]: value }));
 
-    const isValid = validateField(field, value.trim());
+    const isValid = validateField(field, value);
     setErrors((prevErrors) => ({
       ...prevErrors,
       [field]: !isValid,
