@@ -6,37 +6,14 @@ import { Edit3, Trash2, X, Save } from "lucide-react";
 function WordEntry({ word, index, onSave }) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempWord, setTempWord] = useState({ ...word });
-
   const defaultErrors = {
     english: false,
     transcription: false,
     russian: false,
   };
 
-  const [errors, setErrors] = useState({ defaultErrors });
-
-  const handleEditClick = () => {
-    setIsEditing((prev) => !prev);
-    setTempWord({ ...word });
-  };
-
-  const handleCancelClick = () => {
-    setIsEditing((prev) => !prev);
-    setTempWord({ ...word });
-    setErrors(defaultErrors);
-  };
-
-  const handleSaveClick = () => {
-    if (Object.values(errors).some((e) => e)) {
-      return;
-    }
-    onSave(tempWord);
-    setIsEditing((prev) => !prev);
-  };
-
-  const handleDeleteClick = () => {
-    console.log("Deleted word with id:", word.id);
-  };
+  const [errors, setErrors] = useState(defaultErrors);
+  const hasErrors = Object.values(errors).some((error) => error);
 
   const validateField = (field, value) => {
     const trimmed = value.trim();
@@ -54,7 +31,13 @@ function WordEntry({ word, index, onSave }) {
     }
   };
 
-  const hasErrors = Object.values(errors).some((error) => error);
+  const handleSaveClick = () => {
+    if (hasErrors) {
+      return;
+    }
+    onSave(tempWord);
+    setIsEditing((prev) => !prev);
+  };
 
   const handleChange = (field, value) => {
     setTempWord((prev) => ({ ...prev, [field]: value }));
@@ -64,6 +47,21 @@ function WordEntry({ word, index, onSave }) {
       ...prevErrors,
       [field]: !isValid,
     }));
+  };
+
+  const handleEditClick = () => {
+    setIsEditing((prev) => !prev);
+    setTempWord({ ...word });
+  };
+
+  const handleCancelClick = () => {
+    setIsEditing(false);
+    setTempWord({ ...word });
+    setErrors(defaultErrors);
+  };
+
+  const handleDeleteClick = () => {
+    console.log("Deleted word with id:", word.id);
   };
 
   return (
