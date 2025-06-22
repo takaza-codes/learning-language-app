@@ -1,6 +1,6 @@
 import styles from "../BaseButton/BaseButton.module.scss";
 
-const BaseButton = ({ onClick, type, form, children }) => {
+const BaseButton = ({ disabled, onClick, type, form, children }) => {
   let className;
 
   switch (form) {
@@ -21,7 +21,11 @@ const BaseButton = ({ onClick, type, form, children }) => {
   }
 
   return (
-    <button className={className} onClick={onClick} type={type}>
+    <button
+      disabled={disabled}
+      className={className}
+      onClick={onClick}
+      type={type}>
       {children}
     </button>
   );
