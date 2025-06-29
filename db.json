@@ -3,7 +3,7 @@
     {
       "id": "33198",
       "english": "mother",
-      "transcription": "[mʌðə]",
+      "transcription": "mʌðə",
       "russian": "мама",
       "tags": "Family",
       "tags_json": "[\"Family\"]"
@@ -11,7 +11,7 @@
     {
       "id": "33200",
       "english": "aunt",
-      "transcription": "[ænt]",
+      "transcription": "ænt",
       "russian": "тётя",
       "tags": "Family",
       "tags_json": "[\"Family\"]"
@@ -19,7 +19,7 @@
     {
       "id": "33208",
       "english": "peace",
-      "transcription": "[piːs]",
+      "transcription": "piːs",
       "russian": "мир",
       "tags": "",
       "tags_json": "[]"
@@ -27,7 +27,7 @@
     {
       "id": "33209",
       "english": "overwhelming",
-      "transcription": "[əʊvərˈwelmɪŋ]",
+      "transcription": "əʊvərˈwelmɪŋ",
       "russian": "ошеломляющий",
       "tags": "",
       "tags_json": "[]"
@@ -35,7 +35,7 @@
     {
       "id": "33211",
       "english": "forecast",
-      "transcription": "[ˈfɔːrkæst]",
+      "transcription": "ˈfɔːrkæst",
       "russian": "прогноз",
       "tags": "",
       "tags_json": "[]"
@@ -43,7 +43,7 @@
     {
       "id": "33229",
       "english": "mosquito",
-      "transcription": "[məˈskiː.təʊ]",
+      "transcription": "məˈskiː.təʊ",
       "russian": "комар",
       "tags": "",
       "tags_json": "[]"
@@ -51,7 +51,7 @@
     {
       "id": "33250",
       "english": "tornado",
-      "transcription": "[tɔːˈneɪ.dəʊ]",
+      "transcription": "tɔːˈneɪ.dəʊ",
       "russian": "торнадо",
       "tags": "weather",
       "tags_json": "[\"weather\"]"
@@ -59,7 +59,7 @@
     {
       "id": "33317",
       "english": "scrooge",
-      "transcription": "[skruːdʒ]",
+      "transcription": "skruːdʒ",
       "russian": "скряга",
       "tags": "",
       "tags_json": "[]"
@@ -67,7 +67,7 @@
     {
       "id": "33367",
       "english": "cat",
-      "transcription": "[cæt]",
+      "transcription": "cæt",
       "russian": "кот",
       "tags": "",
       "tags_json": "[]"
@@ -75,7 +75,7 @@
     {
       "id": "33390",
       "english": "hang out",
-      "transcription": "[ˈhæŋ ˈaʊt]",
+      "transcription": "ˈhæŋ ˈaʊt",
       "russian": "тусоваться",
       "tags": "",
       "tags_json": "[]"
@@ -83,7 +83,7 @@
     {
       "id": "33393",
       "english": "girl",
-      "transcription": "[ɡɜːrl]",
+      "transcription": "ɡɜːrl",
       "russian": "девочка",
       "tags": "",
       "tags_json": "[]"
@@ -91,8 +91,16 @@
     {
       "id": "33404",
       "english": "curious",
-      "transcription": "[ˈkjʊrɪəs]",
+      "transcription": "ˈkjʊrɪəs",
       "russian": "любопытный",
+      "tags": "",
+      "tags_json": "[]"
+    },
+    {
+      "id": "1751221753070",
+      "english": "mundane",
+      "transcription": "mʌndeɪn",
+      "russian": "обыденный",
       "tags": "",
       "tags_json": "[]"
     }

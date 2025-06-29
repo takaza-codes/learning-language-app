@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { patch, post, del } from "../../api/httpRequests";
+import { del } from "../../api/httpRequests";
 import styles from "./WordList.module.scss";
 import BaseButton from "../BaseButton/BaseButton";
 import { Edit3, Trash2, X, Save } from "lucide-react";
@@ -16,8 +16,8 @@ const VALIDATION_PATTERNS = {
   transcription: /^[a-zA-Z[\]\sˈˌəɛæɔʌθðŋɪʊɒ]+$/,
 };
 
-function WordEntry({ word, index, onSave, onDelete }) {
-  const [isEditing, setIsEditing] = useState(false);
+function WordEntry({ word, index, onSave, onDelete, isNew = false, onCancel }) {
+  const [isEditing, setIsEditing] = useState(isNew);
   const [tempWord, setTempWord] = useState({ ...word });
 
   const [errors, setErrors] = useState(DEFAULT_ERRORS);
@@ -34,7 +34,10 @@ function WordEntry({ word, index, onSave, onDelete }) {
       return;
     }
     onSave(tempWord);
-    setIsEditing((prev) => !prev);
+
+    if (!isNew) {
+      setIsEditing((prev) => !prev);
+    }
   };
 
   const handleChange = (field, value) => {
@@ -53,9 +56,13 @@ function WordEntry({ word, index, onSave, onDelete }) {
   };
 
   const handleCancelClick = () => {
-    setIsEditing(false);
-    setTempWord({ ...word });
-    setErrors(DEFAULT_ERRORS);
+    if (isNew && onCancel) {
+      onCancel();
+    } else {
+      setIsEditing(false);
+      setTempWord({ ...word });
+      setErrors(DEFAULT_ERRORS);
+    }
   };
 
   const handleDeleteClick = async () => {
@@ -107,7 +114,7 @@ function WordEntry({ word, index, onSave, onDelete }) {
             }}
           />
         ) : (
-          word.transcription
+          `[${word.transcription}]`
         )}
         {errors.transcription && (
           <div className={styles.errorMsg}>

@@ -20,7 +20,7 @@ function WordCard({ props, onFirstReveal }) {
   return (
     <article className={styles.card}>
       <h3 className={styles.testWord}>{english}</h3>
-      <p className={styles.transcription}>{transcription}</p>
+      <p className={styles.transcription}>[{transcription}]</p>
       {!isRevealed ? (
         <CardButton onClick={handleCheckClick} text="Check" />
       ) : (

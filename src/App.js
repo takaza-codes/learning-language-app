@@ -6,6 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ROUTES from "../src/routes/routes";
+import Loader from "../src/components/Loader/Loader";
 
 function App() {
   const MainPage = lazy(() => import("./components/Pages/MainPage/MainPage"));
@@ -21,7 +22,12 @@ function App() {
         <div className="App">
           <Header />
           <main>
-            <Suspense fallback={<div>Wait a bit...</div>}>
+            <Suspense
+              fallback={
+                <div>
+                  <Loader />
+                </div>
+              }>
               <Routes>
                 <Route path={ROUTES.MAIN} element={<MainPage />} />
                 <Route path={ROUTES.LIST} element={<WordList />} />
