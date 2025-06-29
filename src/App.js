@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ROUTES from "../src/routes/routes";
 import Loader from "../src/components/Loader/Loader";
+import { WordsProvider } from "./context/WordsContext";
 
 function App() {
   const MainPage = lazy(() => import("./components/Pages/MainPage/MainPage"));
@@ -28,12 +29,14 @@ function App() {
                   <Loader />
                 </div>
               }>
-              <Routes>
-                <Route path={ROUTES.MAIN} element={<MainPage />} />
-                <Route path={ROUTES.LIST} element={<WordList />} />
-                <Route path={ROUTES.GAME} element={<WordCards />} />
-                <Route path={ROUTES.ERROR} element={<ErrorPage />} />
-              </Routes>
+              <WordsProvider>
+                <Routes>
+                  <Route path={ROUTES.MAIN} element={<MainPage />} />
+                  <Route path={ROUTES.LIST} element={<WordList />} />
+                  <Route path={ROUTES.GAME} element={<WordCards />} />
+                  <Route path={ROUTES.ERROR} element={<ErrorPage />} />
+                </Routes>
+              </WordsProvider>
             </Suspense>
           </main>
           <Footer />

@@ -1,24 +1,33 @@
-import { useEffect, useState } from "react";
-// import { wordList } from "../../assets/words";
-import { get } from "../../api/httpRequests";
+import { useState } from "react";
 import WordCard from "./WordCard/WordCard";
 import CardButton from "./CardButton/CardButton";
 import Carousel from "./Carousel/Carousel";
 import styles from "./WordCards.module.scss";
+import { useWords } from "../../context/WordsContext";
 
 function WordCards() {
+  const { words, isLoading, error } = useWords();
   const [cardIndex, setCardIndex] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [wordList, setWordList] = useState([]);
-
-  useEffect(() => {
-    get("words").then(setWordList).catch(console.error);
-  }, []);
+  const [wordsLearned, setWordsLearned] = useState(0);
+  const [revealedIds, setRevealedIds] = useState(new Set());
 
   const handleReset = () => {
     setCardIndex(0);
     setDirection(1);
+    setWordsLearned(0);
+    setRevealedIds(new Set());
   };
+
+  const handleFirstReveal = (id) => {
+    if (!revealedIds.has(id)) {
+      setWordsLearned((prev) => prev + 1);
+      setRevealedIds((prev) => new Set([...prev, id]));
+    }
+  };
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   const finalSlide = (
     <div className={styles.finalCard}>
@@ -31,25 +40,15 @@ function WordCards() {
     </div>
   );
 
-  const [wordsLearned, setWordsLearned] = useState(0);
-  const [revealedIds, setRevealedIds] = useState(new Set());
-
-  const handleFirstReveal = (id) => {
-    if (!revealedIds.has(id)) {
-      setWordsLearned((prev) => prev + 1);
-      setRevealedIds((prev) => new Set([...prev, id]));
-    }
-  };
-
   return (
     <div className={styles.mainContainer}>
       <div className={styles.wordsLearned}>
-        <p>this session: </p>
-        <p className={styles.counter}>{wordsLearned} </p>
+        <p>this session:</p>
+        <p className={styles.counter}>{wordsLearned}</p>
         <p>words learned</p>
       </div>
       <Carousel
-        items={wordList}
+        items={words}
         cardIndex={cardIndex}
         setCardIndex={setCardIndex}
         direction={direction}
