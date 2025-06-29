@@ -39,14 +39,27 @@ const MyCheckbox = ({ children, ...props }) => {
   );
 };
 
+const submitForm = (values) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (values.userName === "error") {
+        reject(new Error("Server error: This username is not allowed."));
+      } else {
+        resolve();
+      }
+    }, 500);
+  });
+};
+
 const SignupForm = () => {
   return (
     <div className={styles.formContainer}>
-      <h2>Subsribe to our newsletter!</h2>
+      <h2>Subscribe to our newsletter!</h2>
       <Formik
         initialValues={{
           userName: "",
           email: "",
+          message: "",
           acceptedTerms: false,
         }}
         validationSchema={Yup.object({
@@ -55,15 +68,25 @@ const SignupForm = () => {
             .max(15, "Must be 15 characters or less")
             .required("Required"),
           email: Yup.string()
-            .email("Invalid email addresss`")
+            .email("Invalid email address")
             .required("Required"),
           acceptedTerms: Yup.boolean()
             .required("Required")
             .oneOf([true], "You must accept the terms and conditions."),
+          message: Yup.string(),
         })}
-        onSubmit={async (values, { setSubmitting }) => {
-          await new Promise((r) => setTimeout(r, 500));
-          setSubmitting(false);
+        onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
+          console.log("Submit called!", values);
+          try {
+            setErrors({ submit: undefined });
+            setSubmitting(true);
+            await submitForm(values);
+            resetForm();
+          } catch (error) {
+            setErrors({ submit: error.message });
+          } finally {
+            setSubmitting(false);
+          }
         }}>
         <Form>
           <MyTextInput name="userName" type="text" placeholder="Name" />

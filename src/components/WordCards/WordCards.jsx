@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { wordList } from "../../assets/words";
+import { useEffect, useState } from "react";
+// import { wordList } from "../../assets/words";
+import { get } from "../../api/httpRequests";
 import WordCard from "./WordCard/WordCard";
 import CardButton from "./CardButton/CardButton";
 import Carousel from "./Carousel/Carousel";
@@ -8,6 +9,11 @@ import styles from "./WordCards.module.scss";
 function WordCards() {
   const [cardIndex, setCardIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [wordList, setWordList] = useState([]);
+
+  useEffect(() => {
+    get("words").then(setWordList).catch(console.error);
+  }, []);
 
   const handleReset = () => {
     setCardIndex(0);
@@ -26,12 +32,12 @@ function WordCards() {
   );
 
   const [wordsLearned, setWordsLearned] = useState(0);
-  const [revealedIds, setRevealedIds] = useState([]);
+  const [revealedIds, setRevealedIds] = useState(new Set());
 
   const handleFirstReveal = (id) => {
-    if (!revealedIds.includes(id)) {
+    if (!revealedIds.has(id)) {
       setWordsLearned((prev) => prev + 1);
-      setRevealedIds([...revealedIds, id]);
+      setRevealedIds((prev) => new Set([...prev, id]));
     }
   };
 

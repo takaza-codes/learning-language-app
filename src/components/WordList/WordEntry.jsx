@@ -1,34 +1,32 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { patch, post, del } from "../../api/httpRequests";
 import styles from "./WordList.module.scss";
 import BaseButton from "../BaseButton/BaseButton";
 import { Edit3, Trash2, X, Save } from "lucide-react";
 
-function WordEntry({ word, index, onSave }) {
+const DEFAULT_ERRORS = {
+  english: false,
+  transcription: false,
+  russian: false,
+};
+
+const VALIDATION_PATTERNS = {
+  english: /^[a-zA-Z]+$/,
+  russian: /^[а-яА-ЯёЁ]+$/,
+  transcription: /^[a-zA-Z[\]\sˈˌəɛæɔʌθðŋɪʊɒ]+$/,
+};
+
+function WordEntry({ word, index, onSave, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempWord, setTempWord] = useState({ ...word });
-  const defaultErrors = {
-    english: false,
-    transcription: false,
-    russian: false,
-  };
 
-  const [errors, setErrors] = useState(defaultErrors);
+  const [errors, setErrors] = useState(DEFAULT_ERRORS);
   const hasErrors = Object.values(errors).some((error) => error);
 
   const validateField = (field, value) => {
     const trimmed = value.trim();
     if (trimmed === "") return false;
-
-    switch (field) {
-      case "english":
-        return /^[a-zA-Z]+$/.test(trimmed);
-      case "russian":
-        return /^[а-яА-ЯёЁ]+$/.test(trimmed);
-      case "transcription":
-        return /^[a-zA-Z[\]\sˈˌəɛæɔʌθðŋɪʊɒ]+$/.test(trimmed);
-      default:
-        return false;
-    }
+    return VALIDATION_PATTERNS[field]?.test(trimmed) || false;
   };
 
   const handleSaveClick = () => {
@@ -57,11 +55,17 @@ function WordEntry({ word, index, onSave }) {
   const handleCancelClick = () => {
     setIsEditing(false);
     setTempWord({ ...word });
-    setErrors(defaultErrors);
+    setErrors(DEFAULT_ERRORS);
   };
 
-  const handleDeleteClick = () => {
-    console.log("Deleted word with id:", word.id);
+  const handleDeleteClick = async () => {
+    try {
+      await del(`words/${word.id}`);
+      console.log("Deleted word with id:", word.id);
+      onDelete(word.id);
+    } catch (error) {
+      console.error("Ошибка при удалении:", error.message);
+    }
   };
 
   return (

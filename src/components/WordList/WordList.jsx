@@ -1,15 +1,23 @@
-import React, { useState } from "react";
-import { wordList } from "../../assets/words";
+import { useState, useEffect } from "react";
+import { get } from "../../api/httpRequests";
 import WordEntry from "./WordEntry";
 import styles from "./WordList.module.scss";
 
 const WordList = () => {
-  const [words, setWords] = useState(wordList);
+  const [words, setWords] = useState([]);
+
+  useEffect(() => {
+    get("words").then(setWords).catch(console.error);
+  }, []);
 
   const handleSaveWord = (updatedWord) => {
     setWords((prevWords) =>
       prevWords.map((word) => (word.id === updatedWord.id ? updatedWord : word))
     );
+  };
+
+  const handleDelete = (delWord) => {
+    setWords((prevWords) => prevWords.filter((word) => word.id !== delWord));
   };
 
   return (
@@ -30,6 +38,7 @@ const WordList = () => {
             word={word}
             index={index}
             onSave={handleSaveWord}
+            onDelete={handleDelete}
           />
         ))}
       </tbody>
