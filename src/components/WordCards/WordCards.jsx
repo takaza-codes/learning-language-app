@@ -1,24 +1,26 @@
-import { useEffect, useState } from "react";
-// import { wordList } from "../../assets/words";
-import { get } from "../../api/httpRequests";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchWordsAsync } from "../../store/words/wordsSlice";
+import {
+  setCardIndex,
+  setDirection,
+  resetSession,
+} from "../../store/cards/wordCardsSlice";
 import WordCard from "./WordCard/WordCard";
 import CardButton from "./CardButton/CardButton";
 import Carousel from "./Carousel/Carousel";
 import styles from "./WordCards.module.scss";
 
 function WordCards() {
-  const [cardIndex, setCardIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [wordList, setWordList] = useState([]);
+  const dispatch = useDispatch();
+  const { words, loading } = useSelector((state) => state.words);
+  const { cardIndex, direction, wordsLearned } = useSelector(
+    (state) => state.wordCards
+  );
 
   useEffect(() => {
-    get("words").then(setWordList).catch(console.error);
-  }, []);
-
-  const handleReset = () => {
-    setCardIndex(0);
-    setDirection(1);
-  };
+    dispatch(fetchWordsAsync());
+  }, [dispatch]);
 
   const finalSlide = (
     <div className={styles.finalCard}>
@@ -27,19 +29,11 @@ function WordCards() {
         There are no more cards. <br />
         Well done!
       </p>
-      <CardButton text="Again?" onClick={handleReset} />
+      <CardButton text="Again?" onClick={() => dispatch(resetSession())} />
     </div>
   );
 
-  const [wordsLearned, setWordsLearned] = useState(0);
-  const [revealedIds, setRevealedIds] = useState(new Set());
-
-  const handleFirstReveal = (id) => {
-    if (!revealedIds.has(id)) {
-      setWordsLearned((prev) => prev + 1);
-      setRevealedIds((prev) => new Set([...prev, id]));
-    }
-  };
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className={styles.mainContainer}>
@@ -49,14 +43,12 @@ function WordCards() {
         <p>words learned</p>
       </div>
       <Carousel
-        items={wordList}
+        items={words}
         cardIndex={cardIndex}
-        setCardIndex={setCardIndex}
+        setCardIndex={(idx) => dispatch(setCardIndex(idx))}
         direction={direction}
-        setDirection={setDirection}
-        renderItem={(word) => (
-          <WordCard props={word} onFirstReveal={handleFirstReveal} />
-        )}
+        setDirection={(dir) => dispatch(setDirection(dir))}
+        renderItem={(word) => <WordCard props={word} />}
         finalSlide={finalSlide}
         showProgress
       />

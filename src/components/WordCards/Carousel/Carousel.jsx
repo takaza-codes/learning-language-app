@@ -20,14 +20,14 @@ function Carousel({
   const goBack = () => {
     if (cardIndex > 0) {
       setDirection(-1);
-      setCardIndex((prev) => prev - 1);
+      setCardIndex(cardIndex - 1);
     }
   };
 
   const goForward = () => {
     if (!isLastCard) {
       setDirection(1);
-      setCardIndex((prev) => prev + 1);
+      setCardIndex(cardIndex + 1);
     }
   };
 
