@@ -18,4 +18,18 @@
   p {
     text-align: center;
   }
+
+  @include mobile {
+    width: 280px;
+    padding: 1rem;
+    margin: 0 auto;
+
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
 }

@@ -1,5 +1,8 @@
+@import "../../styles/variables";
+
 .header {
-  min-height: 140px;
+  min-height: 100px;
+  max-height: 140px;
   position: sticky;
   top: 0px;
   display: flex;
@@ -16,6 +19,27 @@
     .logo {
       height: 90px;
       padding: 0 50px;
+    }
+  }
+
+  @include tablet {
+    gap: 40px;
+
+    a .logo {
+      height: 70px;
+      padding: 0 20px;
+    }
+  }
+
+  @include mobile {
+    padding: 10px 10px;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 80px;
+
+    a .logo {
+      height: 50px;
+      padding: 0 10px;
     }
   }
 }

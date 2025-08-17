@@ -16,5 +16,9 @@
     align-items: center;
     justify-content: center;
     background-color: $background;
+
+    @include mobile {
+      padding: 0.5rem;
+    }
   }
 }

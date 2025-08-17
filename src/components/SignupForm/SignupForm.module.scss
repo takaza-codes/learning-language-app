@@ -56,4 +56,28 @@
       font-weight: 500;
     }
   }
+
+  @include mobile {
+    margin: 2rem 0;
+    gap: 2rem;
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    form {
+      input[type="email"],
+      input[type="text"],
+      textarea {
+        width: 280px;
+        font-size: 1.1rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  }
 }

@@ -32,6 +32,32 @@
       @include link;
     }
   }
+
+  @include mobile {
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 2rem 0;
+
+    .imageContainer {
+      align-self: end;
+      max-width: 230px;
+      margin-bottom: 0.5rem;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    .textContainer {
+      align-items: start;
+      text-align: left;
+
+      h1 {
+        font-size: 3rem;
+      }
+    }
+  }
 }
 
 .stepsContainer {
@@ -49,5 +75,21 @@
   .steps {
     display: flex;
     gap: 3rem;
+  }
+
+  @include mobile {
+    margin: 2rem 0;
+    align-items: center;
+
+    h2 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .steps {
+      flex-flow: column nowrap;
+      align-items: center;
+      gap: 1.5rem;
+    }
   }
 }
