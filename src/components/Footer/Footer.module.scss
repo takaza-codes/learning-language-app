@@ -15,4 +15,9 @@
     font-size: 1.2rem;
     font-weight: 600;
   }
+
+  @include mobile {
+    min-height: 70px;
+    max-height: 85px;
+  }
 }

@@ -17,7 +17,7 @@ const VALIDATION_PATTERNS = {
   transcription: /^[a-zA-Z[\]\sˈˌəɛæɔʌθðŋɪʊɒ]+$/,
 };
 
-function WordEntry({ word, index, onSave, isNew = false, onCancel }) {
+function WordEntry({ word, index, onSave, isNew = false, onCancel, isMobile }) {
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(isNew);
@@ -97,28 +97,30 @@ function WordEntry({ word, index, onSave, isNew = false, onCancel }) {
           </div>
         )}
       </td>
-      <td className={styles.cell}>
-        {isEditing ? (
-          <input
-            type="text"
-            value={tempWord.transcription}
-            name="transcription"
-            onChange={(e) => handleChange("transcription", e.target.value)}
-            className={styles.input}
-            style={{
-              borderColor: errors.transcription ? "red" : "none",
-              borderWidth: "2px",
-            }}
-          />
-        ) : (
-          `[${word.transcription}]`
-        )}
-        {errors.transcription && (
-          <div className={styles.errorMsg}>
-            Please don't leave the field empty and use valid symbols only.
-          </div>
-        )}
-      </td>
+      {!isMobile && (
+        <td className={styles.cell}>
+          {isEditing ? (
+            <input
+              type="text"
+              value={tempWord.transcription}
+              name="transcription"
+              onChange={(e) => handleChange("transcription", e.target.value)}
+              className={styles.input}
+              style={{
+                borderColor: errors.transcription ? "red" : "none",
+                borderWidth: "2px",
+              }}
+            />
+          ) : (
+            `[${word.transcription}]`
+          )}
+          {errors.transcription && (
+            <div className={styles.errorMsg}>
+              Please don't leave the field empty and use valid symbols only.
+            </div>
+          )}
+        </td>
+      )}
       <td className={styles.cell}>
         {isEditing ? (
           <input

@@ -28,6 +28,22 @@
       font-size: 3rem;
       font-weight: 600;
     }
+
+    @include mobile {
+      padding: 5px;
+
+      p {
+        font-size: 0.8rem;
+      }
+
+      .counter {
+        font-size: 2rem;
+      }
+    }
+  }
+  @include mobile {
+    min-width: 320px;
+    max-width: 340px;
   }
 }
 

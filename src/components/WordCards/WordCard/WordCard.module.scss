@@ -31,4 +31,9 @@
   p {
     text-align: center;
   }
+
+  @include mobile {
+    min-width: 220px;
+    min-height: 330px;
+  }
 }

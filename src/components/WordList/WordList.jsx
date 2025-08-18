@@ -1,17 +1,27 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWordsAsync, addWordAsync } from "../../store/words/wordsSlice";
-// import { get, patch, post } from "../../api/httpRequests";
 import Loader from "../Loader/Loader";
 import BaseButton from "../BaseButton/BaseButton";
 import WordEntry from "./WordEntry";
 import styles from "./WordList.module.scss";
+
+function useIsMobile(breakpoint = 576) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= breakpoint);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoint]);
+  return isMobile;
+}
 
 const WordList = () => {
   const dispatch = useDispatch();
   const [newWord, setNewWord] = useState(null); // store the temp word locally
 
   const { loading, error, words } = useSelector((state) => state.words);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     dispatch(fetchWordsAsync());
@@ -57,7 +67,7 @@ const WordList = () => {
           <tr>
             <th className={styles.headerCell}>#</th>
             <th className={styles.headerCell}>Word</th>
-            <th className={styles.headerCell}>Transcription</th>
+            {!isMobile && <th className={styles.headerCell}>Transcription</th>}
             <th className={styles.headerCell}>Translation</th>
             <th className={styles.headerCell}>Action</th>
           </tr>
@@ -70,10 +80,16 @@ const WordList = () => {
               isNew={true}
               onSave={handleAddWord}
               onCancel={cancelAddWord}
+              isMobile={isMobile}
             />
           )}
           {words.map((word, index) => (
-            <WordEntry key={word.id} word={word} index={index} />
+            <WordEntry
+              key={word.id}
+              word={word}
+              index={index}
+              isMobile={isMobile}
+            />
           ))}
         </tbody>
       </table>
