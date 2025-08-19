@@ -8,7 +8,7 @@
 
   th:nth-child(1),
   td:nth-child(1) {
-    width: 5%;
+    width: 4%;
   }
 
   th:nth-child(2),
@@ -48,9 +48,14 @@
   }
 
   @include mobile {
-    width: 100%;
+    margin: 2rem 0;
+    width: 95%;
     table-layout: fixed;
     font-size: 0.8rem;
+
+    .topRow {
+      font-size: 1.1rem;
+    }
 
     .headerCell,
     .cell {
