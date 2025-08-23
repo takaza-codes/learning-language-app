@@ -44,6 +44,10 @@
   @include mobile {
     min-width: 320px;
     max-width: 340px;
+
+    .wordsLearned {
+      border-radius: 24px;
+    }
   }
 }
 
