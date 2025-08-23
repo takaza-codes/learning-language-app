@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { del } from "../../api/httpRequests";
+import { useDispatch } from "react-redux";
+import { editWord, deleteWordAsync } from "../../store/words/wordsSlice";
 import styles from "./WordList.module.scss";
 import BaseButton from "../BaseButton/BaseButton";
 import { Edit3, Trash2, X, Save } from "lucide-react";
@@ -16,7 +17,9 @@ const VALIDATION_PATTERNS = {
   transcription: /^[a-zA-Z[\]\sˈˌəɛæɔʌθðŋɪʊɒ]+$/,
 };
 
-function WordEntry({ word, index, onSave, onDelete, isNew = false, onCancel }) {
+function WordEntry({ word, index, onSave, isNew = false, onCancel, isMobile }) {
+  const dispatch = useDispatch();
+
   const [isEditing, setIsEditing] = useState(isNew);
   const [tempWord, setTempWord] = useState({ ...word });
 
@@ -30,13 +33,13 @@ function WordEntry({ word, index, onSave, onDelete, isNew = false, onCancel }) {
   };
 
   const handleSaveClick = () => {
-    if (hasErrors) {
-      return;
-    }
-    onSave(tempWord);
+    if (hasErrors) return;
 
-    if (!isNew) {
-      setIsEditing((prev) => !prev);
+    if (isNew) {
+      onSave(tempWord);
+    } else {
+      dispatch(editWord(tempWord));
+      setIsEditing(false);
     }
   };
 
@@ -66,13 +69,7 @@ function WordEntry({ word, index, onSave, onDelete, isNew = false, onCancel }) {
   };
 
   const handleDeleteClick = async () => {
-    try {
-      await del(`words/${word.id}`);
-      console.log("Deleted word with id:", word.id);
-      onDelete(word.id);
-    } catch (error) {
-      console.error("Ошибка при удалении:", error.message);
-    }
+    dispatch(deleteWordAsync(word.id));
   };
 
   return (
@@ -100,28 +97,30 @@ function WordEntry({ word, index, onSave, onDelete, isNew = false, onCancel }) {
           </div>
         )}
       </td>
-      <td className={styles.cell}>
-        {isEditing ? (
-          <input
-            type="text"
-            value={tempWord.transcription}
-            name="transcription"
-            onChange={(e) => handleChange("transcription", e.target.value)}
-            className={styles.input}
-            style={{
-              borderColor: errors.transcription ? "red" : "none",
-              borderWidth: "2px",
-            }}
-          />
-        ) : (
-          `[${word.transcription}]`
-        )}
-        {errors.transcription && (
-          <div className={styles.errorMsg}>
-            Please don't leave the field empty and use valid symbols only.
-          </div>
-        )}
-      </td>
+      {!isMobile && (
+        <td className={styles.cell}>
+          {isEditing ? (
+            <input
+              type="text"
+              value={tempWord.transcription}
+              name="transcription"
+              onChange={(e) => handleChange("transcription", e.target.value)}
+              className={styles.input}
+              style={{
+                borderColor: errors.transcription ? "red" : "none",
+                borderWidth: "2px",
+              }}
+            />
+          ) : (
+            `[${word.transcription}]`
+          )}
+          {errors.transcription && (
+            <div className={styles.errorMsg}>
+              Please don't leave the field empty and use valid symbols only.
+            </div>
+          )}
+        </td>
+      )}
       <td className={styles.cell}>
         {isEditing ? (
           <input

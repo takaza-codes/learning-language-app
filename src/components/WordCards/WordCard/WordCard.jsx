@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { revealWord } from "../../../store/cards/wordCardsSlice";
 import styles from "./WordCard.module.scss";
 import CardButton from "../CardButton/CardButton";
 
-function WordCard({ props, onFirstReveal }) {
+function WordCard({ props }) {
   const { english, transcription, russian, id } = props;
   const [isRevealed, setIsRevealed] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsRevealed(false);
@@ -12,7 +15,7 @@ function WordCard({ props, onFirstReveal }) {
 
   const handleCheckClick = () => {
     if (!isRevealed) {
-      onFirstReveal(id);
+      dispatch(revealWord(id));
       setIsRevealed(true);
     }
   };

@@ -10,6 +10,10 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @include mobile {
+    padding: 5px 10px;
+  }
 }
 
 .edit {

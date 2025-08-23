@@ -6,6 +6,20 @@
   border: 1px solid darkgray;
   border-spacing: 0;
 
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 4%;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 25%;
+  }
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 30%;
+  }
+
   .topRow {
     font-size: 1.3rem;
     text-align: center;
@@ -31,6 +45,34 @@
 
   .cell {
     padding-left: 1rem;
+  }
+
+  @include mobile {
+    margin: 2rem 0;
+    width: 95%;
+    table-layout: fixed;
+    font-size: 0.8rem;
+
+    .topRow {
+      font-size: 1.1rem;
+    }
+
+    .headerCell,
+    .cell {
+      padding: 8px 4px;
+    }
+
+    .cell {
+      .input {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+    }
+
+    .buttonContainer {
+      gap: 0.1rem;
+    }
   }
 }
 

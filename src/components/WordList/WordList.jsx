@@ -1,30 +1,39 @@
 import { useState, useEffect } from "react";
-import { get, patch, post } from "../../api/httpRequests";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWordsAsync, addWordAsync } from "../../store/words/wordsSlice";
 import Loader from "../Loader/Loader";
 import BaseButton from "../BaseButton/BaseButton";
 import WordEntry from "./WordEntry";
 import styles from "./WordList.module.scss";
 
+function useIsMobile(breakpoint = 576) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= breakpoint);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 const WordList = () => {
-  const [words, setWords] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [newWord, setNewWord] = useState(null); // store the temp word
+  const dispatch = useDispatch();
+  const [newWord, setNewWord] = useState(null); // store the temp word locally
+
+  const { loading, error, words } = useSelector((state) => state.words);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
-    get("words").then(setWords).catch(console.error);
-    setLoading(false);
-  }, []);
+    dispatch(fetchWordsAsync());
+  }, [dispatch]);
 
-  const handleSaveWord = (updatedWord) => {
-    setWords((prevWords) =>
-      prevWords.map((word) => (word.id === updatedWord.id ? updatedWord : word))
-    );
-    patch(`words/${updatedWord.id}`, updatedWord);
-  };
+  if (loading) {
+    return <Loader />;
+  }
 
-  const handleDelete = (delWord) => {
-    setWords((prevWords) => prevWords.filter((word) => word.id !== delWord));
-  };
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   const generateId = () => Date.now().toString();
 
@@ -39,14 +48,9 @@ const WordList = () => {
     });
   };
 
-  const handleAddWord = async (createdWord) => {
-    try {
-      const savedWord = await post("words", createdWord);
-      setWords((prevWords) => [...prevWords, savedWord]);
-      setNewWord(null);
-    } catch (error) {
-      console.error("Error while saving new word:", error.message);
-    }
+  const handleAddWord = (createdWord) => {
+    dispatch(addWordAsync(createdWord));
+    setNewWord(null);
   };
 
   const cancelAddWord = () => {
@@ -55,46 +59,40 @@ const WordList = () => {
 
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <BaseButton form="save" onClick={addWord}>
-            Add a new word
-          </BaseButton>
-          <table className={styles.wordList}>
-            <thead className={styles.topRow}>
-              <tr>
-                <th className={styles.headerCell}>#</th>
-                <th className={styles.headerCell}>Word</th>
-                <th className={styles.headerCell}>Transcription</th>
-                <th className={styles.headerCell}>Translation</th>
-                <th className={styles.headerCell}>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {newWord && (
-                <WordEntry
-                  word={newWord}
-                  index={words.length}
-                  isNew={true}
-                  onSave={handleAddWord}
-                  onCancel={cancelAddWord}
-                />
-              )}
-              {words.map((word, index) => (
-                <WordEntry
-                  key={word.id}
-                  word={word}
-                  index={index}
-                  onSave={handleSaveWord}
-                  onDelete={handleDelete}
-                />
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
+      <BaseButton form="save" onClick={addWord}>
+        Add a new word
+      </BaseButton>
+      <table className={styles.wordList}>
+        <thead className={styles.topRow}>
+          <tr>
+            <th className={styles.headerCell}>#</th>
+            <th className={styles.headerCell}>Word</th>
+            {!isMobile && <th className={styles.headerCell}>Transcription</th>}
+            <th className={styles.headerCell}>Translation</th>
+            <th className={styles.headerCell}>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {newWord && (
+            <WordEntry
+              word={newWord}
+              index={words.length}
+              isNew={true}
+              onSave={handleAddWord}
+              onCancel={cancelAddWord}
+              isMobile={isMobile}
+            />
+          )}
+          {words.map((word, index) => (
+            <WordEntry
+              key={word.id}
+              word={word}
+              index={index}
+              isMobile={isMobile}
+            />
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };

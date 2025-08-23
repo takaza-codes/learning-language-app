@@ -42,3 +42,27 @@ $shadow-color: rgba($blue, 0.4);
     filter: brightness(90%);
   }
 }
+
+//Breakpoints
+$mobile: 576px;
+$tablet: 768px;
+$desktop: 992px;
+
+//Media mixins
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: $desktop) {
+    @content;
+  }
+}
