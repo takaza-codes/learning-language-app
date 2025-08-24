@@ -3,6 +3,7 @@
 A responsive-design SPA for EngLand - a language-learning platform that allows users to create their own vocabulary lists and practice that vocabulary via flashcards.
 
 <img width="500" alt="main_desktop" src="https://github.com/user-attachments/assets/124ef9b8-567e-4195-ab4c-472c255106f1" /> </br>
+<img width="500" alt="404_page" src="https://github.com/user-attachments/assets/5e9050a4-6597-4cf7-941d-e35405e5a037" />
 
 
 <img width="250" alt="mobile_cards" src="https://github.com/user-attachments/assets/38d46a89-c46b-445d-89c7-445651815789" />
